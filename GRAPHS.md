@@ -23,7 +23,7 @@ of cores) plus also a hard-limit (after 8 cores, the performance crashes).
 - ParTest 4 and 5 demonstrate that as soon as you start doing 'work' inside your function, parallelisation/core-scalability falls through the floor.
 
 An alternative set of benchmarks I have prepared that find a very similar result (using different hardware and different PG versions) 
-can be seen at [PAR_PSQL BENCHMARKS](https://github.com/gbb/par_psql/blob/master/BENCHMARKS.md).
+can be seen at [the par_psql benchmarks page](https://github.com/gbb/par_psql/blob/master/BENCHMARKS.md).
 
 I hope this is useful and inspires some discussion/thought in the dev community about this problem, assuming the problem is not unique 
 to my systems.
