@@ -1,9 +1,10 @@
 Parallel pl/pgsql performance tests (v1, July 2015)
 ---------------------------------------------------
-Graeme Bell
 
-TLDR; Whenever I use pl/pgsql functions I get max 2 core scalability. Whenever I use a 
-table for input to pl/pgsql (read-only) I get max 8 core scability.
+Whenever I use pl/pgsql functions I get a maximum of 2 core scalability (PG9.3) and about 
+2.5 core scability (PG9.4). Whenever I use a table for input to pl/pgsql (read-only) I 
+get approx. 8 core maximum scability. These scaling problems do not affect my ordinary 
+SQL or my trivial pl/pgsql functions that don't use tables and don't do much computation.
 
 I believe this benchmark will highlight two significant faults/weaknesses in postgresql's 
 abilities to run pl/pgsql functions on parallel cores. Hopefully, it the future it will 
@@ -16,8 +17,8 @@ world projects when refactoring code.
 These graphs should hopefully be somewhat self-explanatory... they show 
 what happens when you set the same pl/pgsql task running on multiple cores. In 
 this case, the same function and table is used. In my other benchmarks 
-(see parpsql.com) you can see the same effect even when each parallel 
-connection uses differently named functions and different tables. 
+(see [parpsql.com](http://parpsql.com) you can see the same problem even when each parallel 
+connection uses differently named functions and different/independent tables. 
 
 ![Graph0](sample_results/result3.png)
 
@@ -92,6 +93,6 @@ Please be aware this is currently (late 2014) not best practice for scaling past
 
 - If you're interested in parallel programming please check out parpsql.com  (aka github.com/gbb/par_psql)
 
-Graeme B Bell 
-firstnamedotlastname@nibio.no
+Graeme B Bell  (firstnamedotlastname@nibio.no)
+
 NIBIO (previously known as the Norwegian Forest and Landscape Institute)
