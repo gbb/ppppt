@@ -3,12 +3,12 @@ Results
 
 These graphs should hopefully be self-explanatory. 
 
-![Graph0](result0.png)
-![Graph0](result1.png)
-![Graph0](result2.png)
-![Graph0](result3.png)
-![Graph0](result4.png)
-![Graph0](result5.png)
+![Graph0](sample_results/result0.png)
+![Graph1](sample_results/result1.png)
+![Graph2](sample_results/result2.png)
+![Graph3](sample_results/result3.png)
+![Graph4](sample_results/result4.png)
+![Graph5](sample_results/result5.png)
 
 Observations
 ------------

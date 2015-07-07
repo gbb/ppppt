@@ -21,11 +21,11 @@ connection uses differently named functions and different tables.
 
 *A function with a parameter from a table (read-only) as input to pl/pgsql*
 
-![Graph0](result3.png)
+![Graph0](sample_results/result3.png)
 
 *Some computation in pl/pgsql e.g. non-trivial functions*
 
-![Graph0](result4.png)
+![Graph0](sample_results/result4.png)
 
 More graphs and details here: [RESULTS](GRAPHS.md).
 
