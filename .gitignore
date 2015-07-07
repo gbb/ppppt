@@ -1,3 +1,3 @@
-ppppt_log.log
-ppppt_results.csv
-*.png
+./ppppt_log.log
+./ppppt_results.csv
+./*.png
