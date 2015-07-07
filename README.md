@@ -19,13 +19,9 @@ this case, the same function and table is used. In my other benchmarks
 (see parpsql.com) you can see the same effect even when each parallel 
 connection uses differently named functions and different tables. 
 
-*A function with a parameter from a table (read-only) as input to pl/pgsql*
-
 ![Graph0](sample_results/result3.png)
 
-*Some computation in pl/pgsql e.g. non-trivial functions*
-
-![Graph0](sample_results/result4.png)
+![Graph1](sample_results/result4.png)
 
 More graphs and details here: [RESULTS](GRAPHS.md).
 
