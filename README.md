@@ -27,7 +27,7 @@ connection uses differently named functions and different/independent tables.
 More graphs and details here: [RESULTS](GRAPHS.md).
 
 Source data and some information about the host are in the 
-sample_results folder below.
+[sample_results](sample_results) folder above.
 
 If others can confirm these problems, it is useful because there's a lot 
 of pl/sql and pl/pgsql functions out there in the wild, and people are 
