@@ -2,33 +2,48 @@ Parallel pl/pgsql performance tests (v1, July 2015)
 ---------------------------------------------------
 Graeme Bell
 
-This tiny benchmark is written to demonstrate a significant fault/weakness in postgresql's abilities to run pl/pgsql functions on 
-parallel cores. I hope that later this benchmark can be used to show how amazing postgresql is at parallelising sessions that are using 
-pl/pgsql :-)
+TLDR; Whenever I use pl/pgsql functions I get max 2 core scalability. Whenever I use a 
+table for input to pl/pgsql (read-only) I get max 8 core scability.
 
-These graphs should hopefully be self-explanatory. 
+I believe this benchmark will highlight two significant faults/weaknesses in postgresql's 
+abilities to run pl/pgsql functions on parallel cores. Hopefully, it the future it will 
+be used to show how amazing postgresql is at scaling up for parallel processing :-)
 
-*using a table in read-only mode as input to pl/pgsql*
+The situation modelled here is similar to what you face if you are running a GIS server 
+with lots of postgis and pl/pgsql code. I have encountered both these problems in real 
+world projects when refactoring code.
+
+These graphs should hopefully be somewhat self-explanatory... they show 
+what happens when you set the same pl/pgsql task running on multiple cores. In 
+this case, the same function and table is used. In my other benchmarks 
+(see parpsql.com) you can see the same effect even when each parallel 
+connection uses differently named functions and different tables. 
+
+*A function with a parameter from a table (read-only) as input to pl/pgsql*
 
 ![Graph0](result3.png)
 
-*Spending time doing computation in pl/pgsql rather than trivial functions*
+*Some computation in pl/pgsql e.g. non-trivial functions*
 
 ![Graph0](result4.png)
 
 More graphs and details here: [RESULTS](GRAPHS.md).
 
-Source data and some information about the host are in the sample_results folder below.
+Source data and some information about the host are in the 
+sample_results folder below.
 
-These results are similar to the other results I've put up at http://parpsql.com using another benchmark and physical host.
+If others can confirm these problems, it is useful because there's a lot 
+of pl/sql and pl/pgsql functions out there in the wild, and people are 
+probably buying big servers expecting their code will scale a bit.  In 
+my own experience, even when you're using completely independent 
+functions and tables, parallelism doesn't happen much where pl/pgsql is 
+involved. I first encountered this problem during a project in which a 
+simple forest simulation was carried out inside a pgsql function.
 
-If others can confirm these problems, it is useful because there's a lot of pl/sql and pl/pgsql functions out there in the wild, and 
-people are probably buying big servers expecting their code will scale a bit.  In my own experience, even when you're using completely 
-independent functions and tables, parallelism doesn't happen much where pl/pgsql is involved. I first encountered this problem during a 
-project in which a simple forest simulation was carried out inside a pgsql function.
-
-This is potentially rather bad news for projects like PostGIS, perhaps pgrouting, which depend a lot on pgsql. So, please can you run 
-the benchmark and let me know what happens? (there's a thread on pgsql-performance mailing list or you can raise comments on github).
+This is potentially rather bad news for projects like PostGIS, perhaps 
+pgrouting, which depend a lot on pgsql. So, please can you run the 
+benchmark and let me know what happens? (there's a thread on 
+pgsql-performance mailing list or you can raise comments on github).
 
 
 This Repo

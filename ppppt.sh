@@ -40,6 +40,6 @@ done
 echo "Finished benchmark. Results are in $resultsfile."
 
 if [[ -f /usr/bin/R ]]; 
-  then R < pppptgraph.r --no-save 2&>1 1>$logfile; 
+  then R < pppptgraph.r --no-save 2>&1 1>$logfile; 
   echo "Finishing generating graphs. Results are in result[0-5].png";
 fi
