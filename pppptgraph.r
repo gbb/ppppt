@@ -36,6 +36,10 @@ png(filename='result5.png')
 plot(ggplot(subset(d, testcase=='Test 5'), aes(threads,tps,linetype=testcase)) + labs(title = "TPS scaling, for-loop with table column input") + geom_line() + geom_point())
 dev.off()
 
+png(filename='result6.png')
+plot(ggplot(subset(d, testcase=='Test 6'), aes(threads,tps,linetype=testcase)) + labs(title = "TPS scaling, postgres MD5 built-in function") + geom_line() + geom_point())
+dev.off()
+
 png(filename='resultB.png')
 plot(ggplot(subset(d, testcase %in% c('Test 0','Test 1','Test 2')), aes(threads,tps,linetype=testcase)) + labs(title = "Just for fun. Effect of adding a local variable or parameter.") + geom_line() + geom_point())
 dev.off()
