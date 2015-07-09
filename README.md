@@ -10,6 +10,10 @@ I believe this benchmark will highlight two significant faults/weaknesses in pos
 abilities to run pl/pgsql functions on parallel cores. Hopefully, it the future it will 
 be used to show how amazing postgresql is at scaling up for parallel processing :-)
 
+**UPDATE** The main problem has been investigated by the postgresql core developers and confirmed as occuring when e.g. for loops with 
+lightweight statements inside are occuring, except when functions are marked with volatility categories. I've noted some of the 
+proposed workarounds in [RESULTS](GRAPHS.md).
+
 The situation modelled here is similar to what you face if you are running a GIS server 
 with lots of postgis and pl/pgsql code. I have encountered both these problems in real 
 world projects when refactoring code.
@@ -28,19 +32,6 @@ More graphs and details here: [RESULTS](GRAPHS.md).
 
 Source data and some information about the host are in the 
 [sample_results](sample_results) folder above.
-
-If others can confirm these problems, it is useful because there's a lot 
-of pl/sql and pl/pgsql functions out there in the wild, and people are 
-probably buying big servers expecting their code will scale a bit.  In 
-my own experience, even when you're using completely independent 
-functions and tables, parallelism doesn't happen much where pl/pgsql is 
-involved. I first encountered this problem during a project in which a 
-simple forest simulation was carried out inside a pgsql function.
-
-This is potentially rather bad news for projects like PostGIS, perhaps 
-pgrouting, which depend a lot on pgsql. So, please can you run the 
-benchmark and let me know what happens? (there's a thread on 
-pgsql-performance mailing list or you can raise comments on github).
 
 
 This Repo
@@ -79,6 +70,8 @@ to my systems.
 
 - Thank you to Merlin Moncure for his comments on pgsql-performance mailing list which motivated me to set this up, particularly the nice tip 
 about using pgbench this way.
+
+- Thank you to those on the postgresql-bugs and postgresql-performance lists for reproducing the results and exploring the cause.
 
 - Please try to run your tests for at least 60 seconds each. (However, you'll see the same result with t=1...)
 
